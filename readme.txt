@@ -1,2 +1,2 @@
-Git is vension contral system.
+Git is a distributed vension contral system.
 Git is free software.

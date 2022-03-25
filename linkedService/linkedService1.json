@@ -1,0 +1,22 @@
+{
+	"name": "linkedService1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HDInsight",
+		"typeProperties": {
+			"clusterUri": "https://hadoop0208.azurehdinsight.cn",
+			"userName": "admin",
+			"isEspEnabled": false,
+			"linkedServiceName": {
+				"referenceName": "blob",
+				"type": "LinkedServiceReference"
+			},
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1OTg3MjYyMS1lMmUxLTRhNzItOTUwMC05OGE2ZDM1YWE3NzQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "selfhostIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

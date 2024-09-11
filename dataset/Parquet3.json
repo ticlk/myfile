@@ -1,5 +1,5 @@
 {
-	"name": "Parquet1",
+	"name": "Parquet3",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
@@ -10,11 +10,20 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "staging"
+				"fileSystem": "source"
 			},
 			"compressionCodec": "snappy"
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "id",
+				"type": "UTF8"
+			},
+			{
+				"name": "fname",
+				"type": "UTF8"
+			}
+		]
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

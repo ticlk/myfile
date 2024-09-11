@@ -1,8 +1,8 @@
 {
-	"name": "AzureMySqlTable1",
+	"name": "AzureMySqlTable2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureMySql1",
+			"referenceName": "AzureMySql2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -15,8 +15,8 @@
 				"scale": 0
 			},
 			{
-				"name": "fname",
-				"type": "varchar",
+				"name": "fnum",
+				"type": "int",
 				"precision": 0,
 				"scale": 0
 			}

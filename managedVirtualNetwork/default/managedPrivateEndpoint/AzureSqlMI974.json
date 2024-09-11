@@ -1,0 +1,10 @@
+{
+	"name": "AzureSqlMI974",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/5bbf0cbb-647d-4bd8-b4e6-26629f109bd7/resourceGroups/apprest/providers/Microsoft.Sql/managedInstances/userdb",
+		"groupId": "managedInstance",
+		"fqdns": [
+			"userdb.be26f54c986d.database.chinacloudapi.cn"
+		]
+	}
+}

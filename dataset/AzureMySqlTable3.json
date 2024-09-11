@@ -1,8 +1,8 @@
 {
-	"name": "AzureMySqlTable1",
+	"name": "AzureMySqlTable3",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureMySql1",
+			"referenceName": "AzureMySql3",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -19,10 +19,16 @@
 				"type": "varchar",
 				"precision": 0,
 				"scale": 0
+			},
+			{
+				"name": "fnum",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 5
 			}
 		],
 		"typeProperties": {
-			"tableName": "test01"
+			"tableName": "adfdest0801"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

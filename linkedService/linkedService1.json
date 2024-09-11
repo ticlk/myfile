@@ -3,20 +3,15 @@
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
-		"type": "HDInsight",
+		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"clusterUri": "https://hadoop0208.azurehdinsight.cn",
-			"userName": "admin",
-			"isEspEnabled": false,
-			"linkedServiceName": {
-				"referenceName": "blob",
-				"type": "LinkedServiceReference"
-			},
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1OTg3MjYyMS1lMmUxLTRhNzItOTUwMC05OGE2ZDM1YWE3NzQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
-		},
-		"connectVia": {
-			"referenceName": "selfhostIR",
-			"type": "IntegrationRuntimeReference"
+			"server": "sqlserver0409.database.chinacloudapi.cn",
+			"database": "db2",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "admin123",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFERjA3MjJfMjQ3NGQ4MjUtYzk3My00MjcwLTljMGMtYmE3YjhkNjY1NDdiIg0KfQ=="
 		}
 	}
 }

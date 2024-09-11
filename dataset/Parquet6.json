@@ -1,16 +1,16 @@
 {
-	"name": "Parquet1",
+	"name": "Parquet6",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage1",
+			"referenceName": "SAS_BLOB_SOURCE",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileSystem": "staging"
+				"type": "AzureBlobStorageLocation",
+				"container": "source"
 			},
 			"compressionCodec": "snappy"
 		},

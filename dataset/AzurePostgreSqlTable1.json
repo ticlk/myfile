@@ -1,0 +1,174 @@
+{
+	"name": "AzurePostgreSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzurePostgreSql1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzurePostgreSqlTable",
+		"schema": [
+			{
+				"name": "cos1",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos2",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos3",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos4",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos5",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos6",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos7",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos8",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos9",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos10",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos11",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos12",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos13",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos14",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos15",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos16",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos17",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos18",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos19",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos20",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos21",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos22",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos23",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos24",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos25",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "cos26",
+				"type": "\"char\"",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "public",
+			"table": "testdemo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

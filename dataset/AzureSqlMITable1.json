@@ -1,28 +1,26 @@
 {
-	"name": "AzureMySqlTable1",
+	"name": "AzureSqlMITable1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureMySql1",
+			"referenceName": "AzureSqlMI1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "AzureMySqlTable",
+		"type": "AzureSqlMITable",
 		"schema": [
 			{
 				"name": "id",
 				"type": "int",
-				"precision": 0,
-				"scale": 0
+				"precision": 10
 			},
 			{
-				"name": "fname",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"name": "inserttime",
+				"type": "varchar"
 			}
 		],
 		"typeProperties": {
-			"tableName": "test01"
+			"schema": "dbo",
+			"table": "test0315"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

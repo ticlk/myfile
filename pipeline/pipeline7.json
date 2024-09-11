@@ -1,0 +1,53 @@
+{
+	"name": "pipeline7",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "CommonDataServiceForAppsSource",
+						"query": "<fetch>\n<entity name=\"salesorder\">\n<attribute name=\"statecode\" />\n<attribute name=\"createdby\" />\n<attribute name=\"createdon\" />\n<attribute name=\"customerid\" />\n<attribute name=\"modifiedby\" />\n<attribute name=\"name\" />\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t1\">\n   <attribute name=\"baseamount\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t2\">\n   <attribute name=\"baseamount_base\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t3\">\n   <attribute name=\"extendedamount_base\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t4\">\n   <attribute name=\"extendedamount\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t5\">\n   <attribute name=\"owningbusinessunit\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t6\">\n   <attribute name=\"priceperunit\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t7\">\n   <attribute name=\"priceperunit_base\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t8\">\n   <attribute name=\"productdescription\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t9\">\n   <attribute name=\"productname\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t10\">\n   <attribute name=\"producttypecode\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t11\">\n   <attribute name=\"quantity\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t12\">\n   <attribute name=\"salesorderdetailid\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t13\">\n   <attribute name=\"willcall\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t14\">\n   <attribute name=\"volumediscountamount\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t15\">\n   <attribute name=\"volumediscountamount_base\" />\n</link-entity>\n</entity>\n</fetch>"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DataverseEntity1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-09-10T05:51:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

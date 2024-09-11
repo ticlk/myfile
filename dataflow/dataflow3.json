@@ -1,0 +1,111 @@
+{
+	"name": "dataflow3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzurePostgreSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzurePostgreSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "exists1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          cos1 as string,",
+				"          cos2 as string,",
+				"          cos3 as string,",
+				"          cos4 as string,",
+				"          cos5 as string,",
+				"          cos6 as string,",
+				"          cos7 as string,",
+				"          cos8 as string,",
+				"          cos9 as string,",
+				"          cos10 as string,",
+				"          cos11 as string,",
+				"          cos12 as string,",
+				"          cos13 as string,",
+				"          cos14 as string,",
+				"          cos15 as string,",
+				"          cos16 as string,",
+				"          cos17 as string,",
+				"          cos18 as string,",
+				"          cos19 as string,",
+				"          cos20 as string,",
+				"          cos21 as string,",
+				"          cos22 as string,",
+				"          cos23 as string,",
+				"          cos24 as string,",
+				"          cos25 as string,",
+				"          cos26 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          cos1 as string,",
+				"          cos2 as string,",
+				"          cos3 as string,",
+				"          cos4 as string,",
+				"          cos5 as string,",
+				"          cos6 as string,",
+				"          cos7 as string,",
+				"          cos8 as string,",
+				"          cos9 as string,",
+				"          cos10 as string,",
+				"          cos11 as string,",
+				"          cos12 as string,",
+				"          cos13 as string,",
+				"          cos14 as string,",
+				"          cos15 as string,",
+				"          cos16 as string,",
+				"          cos17 as string,",
+				"          cos18 as string,",
+				"          cos19 as string,",
+				"          cos20 as string,",
+				"          cos21 as string,",
+				"          cos22 as string,",
+				"          cos23 as string,",
+				"          cos24 as string,",
+				"          cos25 as string,",
+				"          cos26 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source1, source2 exists(source1@cos1 == source2@cos1,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1",
+				"exists1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

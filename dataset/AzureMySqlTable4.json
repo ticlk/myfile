@@ -1,19 +1,13 @@
 {
-	"name": "AzureMySqlTable1",
+	"name": "AzureMySqlTable4",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureMySql1",
+			"referenceName": "AzureMySql4",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureMySqlTable",
 		"schema": [
-			{
-				"name": "id",
-				"type": "int",
-				"precision": 0,
-				"scale": 0
-			},
 			{
 				"name": "fname",
 				"type": "varchar",
@@ -22,7 +16,7 @@
 			}
 		],
 		"typeProperties": {
-			"tableName": "test01"
+			"tableName": "table0801"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

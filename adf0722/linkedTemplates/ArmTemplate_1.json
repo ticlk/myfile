@@ -7,18 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf0722"
 		},
-		"Dataverse1_servicePrincipalCredential": {
-			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalCredential' of 'Dataverse1'"
-		},
 		"synapse02-WorkspaceDefaultSqlServer_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'synapse02-WorkspaceDefaultSqlServer'",
 			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapse02.sql.azuresynapse.azure.cn,1433;Initial Catalog=@{linkedService().DBName}"
 		},
-		"Dataverse1_properties_typeProperties_servicePrincipalId": {
+		"synapse02-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "b37daf1c-8fac-42f5-968e-3f38c005e4d1"
+			"defaultValue": "https://adlseast2jessie.dfs.core.chinacloudapi.cn"
 		}
 	},
 	"variables": {
@@ -684,31 +680,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Dataverse1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CommonDataServiceForApps",
-				"typeProperties": {
-					"deploymentType": "Online",
-					"serviceUri": "https://d365test2.crm.dynamics.cn",
-					"authenticationType": "AADServicePrincipal",
-					"servicePrincipalId": "[parameters('Dataverse1_properties_typeProperties_servicePrincipalId')]",
-					"servicePrincipalCredential": {
-						"type": "SecureString",
-						"value": "[parameters('Dataverse1_servicePrincipalCredential')]"
-					},
-					"servicePrincipalCredentialType": "ServicePrincipalKey"
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime4",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/synapse02-WorkspaceDefaultSqlServer')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -722,6 +693,23 @@
 				"type": "AzureSqlDW",
 				"typeProperties": {
 					"connectionString": "[parameters('synapse02-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/synapse02-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('synapse02-WorkspaceDefaultStorage_properties_typeProperties_url')]"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",

@@ -166,7 +166,7 @@
 		{
 			"name": "adf0722_ArmTemplate_0",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -256,7 +256,7 @@
 		{
 			"name": "adf0722_ArmTemplate_1",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -267,14 +267,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"Dataverse1_servicePrincipalCredential": {
-						"value": "[parameters('Dataverse1_servicePrincipalCredential')]"
-					},
 					"synapse02-WorkspaceDefaultSqlServer_connectionString": {
 						"value": "[parameters('synapse02-WorkspaceDefaultSqlServer_connectionString')]"
 					},
-					"Dataverse1_properties_typeProperties_servicePrincipalId": {
-						"value": "[parameters('Dataverse1_properties_typeProperties_servicePrincipalId')]"
+					"synapse02-WorkspaceDefaultStorage_properties_typeProperties_url": {
+						"value": "[parameters('synapse02-WorkspaceDefaultStorage_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -285,7 +282,7 @@
 		{
 			"name": "adf0722_ArmTemplate_2",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -299,8 +296,8 @@
 					"AzureSqlMI1_password": {
 						"value": "[parameters('AzureSqlMI1_password')]"
 					},
-					"synapse02-WorkspaceDefaultStorage_properties_typeProperties_url": {
-						"value": "[parameters('synapse02-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+					"Dataverse1_servicePrincipalCredential": {
+						"value": "[parameters('Dataverse1_servicePrincipalCredential')]"
 					},
 					"AzureSqlMI974_properties_privateLinkResourceId": {
 						"value": "[parameters('AzureSqlMI974_properties_privateLinkResourceId')]"
@@ -319,6 +316,9 @@
 					},
 					"AzureSqlMI1_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlMI1_properties_typeProperties_userName')]"
+					},
+					"Dataverse1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('Dataverse1_properties_typeProperties_servicePrincipalId')]"
 					}
 				}
 			},

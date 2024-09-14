@@ -11,9 +11,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlMI1'"
 		},
-		"synapse02-WorkspaceDefaultStorage_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlseast2jessie.dfs.core.chinacloudapi.cn"
+		"Dataverse1_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'Dataverse1'"
 		},
 		"AzureSqlMI974_properties_privateLinkResourceId": {
 			"type": "string",
@@ -40,29 +40,16 @@
 		"AzureSqlMI1_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "admin123"
+		},
+		"Dataverse1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "b37daf1c-8fac-42f5-968e-3f38c005e4d1"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/synapse02-WorkspaceDefaultStorage')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('synapse02-WorkspaceDefaultStorage_properties_typeProperties_url')]"
-				},
-				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
@@ -323,24 +310,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DataverseEntity1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Dataverse1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "CommonDataServiceForAppsEntity",
-				"schema": [],
-				"typeProperties": {
-					"entityName": "salesorderdetail"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlMI1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -358,6 +327,33 @@
 						"type": "SecureString",
 						"value": "[parameters('AzureSqlMI1_password')]"
 					}
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime1",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Dataverse1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CommonDataServiceForApps",
+				"typeProperties": {
+					"deploymentType": "Online",
+					"serviceUri": "https://d365test2.crm.dynamics.cn",
+					"authenticationType": "AADServicePrincipal",
+					"servicePrincipalId": "[parameters('Dataverse1_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalCredential": {
+						"type": "SecureString",
+						"value": "[parameters('Dataverse1_servicePrincipalCredential')]"
+					},
+					"servicePrincipalCredentialType": "ServicePrincipalKey"
 				},
 				"connectVia": {
 					"referenceName": "integrationRuntime1",
@@ -1012,6 +1008,57 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlMITable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlMI1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlMITable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "inserttime",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "test0315"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlMI1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DataverseEntity1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Dataverse1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CommonDataServiceForAppsEntity",
+				"schema": [],
+				"typeProperties": {
+					"entityName": "salesorderdetail"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Dataverse1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pipeline7')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1093,8 +1140,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "CommonDataServiceForAppsSource",
-								"query": "<fetch>\n<entity name=\"salesorder\">\n<attribute name=\"statecode\" />\n<attribute name=\"createdby\" />\n<attribute name=\"createdon\" />\n<attribute name=\"customerid\" />\n<attribute name=\"modifiedby\" />\n<attribute name=\"name\" />\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t1\">\n   <attribute name=\"baseamount\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t2\">\n   <attribute name=\"baseamount_base\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t3\">\n   <attribute name=\"extendedamount_base\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t4\">\n   <attribute name=\"extendedamount\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t5\">\n   <attribute name=\"owningbusinessunit\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t6\">\n   <attribute name=\"priceperunit\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t7\">\n   <attribute name=\"priceperunit_base\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t8\">\n   <attribute name=\"productdescription\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t9\">\n   <attribute name=\"productname\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t10\">\n   <attribute name=\"producttypecode\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t11\">\n   <attribute name=\"quantity\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t12\">\n   <attribute name=\"salesorderdetailid\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t13\">\n   <attribute name=\"willcall\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t14\">\n   <attribute name=\"volumediscountamount\" />\n</link-entity>\n<link-entity name=\"salesorderdetail\" from =\"salesorderid\" to=\"salesorderid\" link-type=\"outer\" alias=\"t15\">\n   <attribute name=\"volumediscountamount_base\" />\n</link-entity>\n</entity>\n</fetch>"
+								"type": "CommonDataServiceForAppsSource"
 							},
 							"sink": {
 								"type": "DelimitedTextSink",
@@ -1132,37 +1178,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DataverseEntity1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlMITable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlMI1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlMITable",
-				"schema": [
-					{
-						"name": "id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "inserttime",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "test0315"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlMI1')]"
 			]
 		},
 		{

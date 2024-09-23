@@ -3,9 +3,9 @@
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
-		"type": "SalesforceV2",
+		"type": "Salesforce",
 		"typeProperties": {
-			"environmentUrl": "https://test.my.salesforce.com",
+			"environmentUrl": "https://zeiss--evapoc.sandbox.liqhtning.sfcrmapps.cn",
 			"clientId": "1234",
 			"apiVersion": "54.0",
 			"authenticationType": "OAuth2ClientCredential",

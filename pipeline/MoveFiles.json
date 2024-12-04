@@ -173,7 +173,7 @@
 			},
 			"SourceStore_Directory": {
 				"type": "String",
-				"defaultValue": "source"
+				"defaultValue": "source1"
 			},
 			"DestinationStore_Location": {
 				"type": "String",

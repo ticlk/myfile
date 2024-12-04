@@ -1,0 +1,16 @@
+{
+	"name": "alexstoragen3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://alexstoragen3.dfs.core.chinacloudapi.cn/",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0NThjYzg4Yi1lNjU3LTQ5MjEtODhiMi04MWU4YzdlMTE2ODIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "selfIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

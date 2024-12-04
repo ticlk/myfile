@@ -1,0 +1,19 @@
+{
+	"name": "Binary1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "test0523",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "FilestreamDB_data.mdf",
+				"fileSystem": "test0523liu"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

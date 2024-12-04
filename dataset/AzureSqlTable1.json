@@ -2,7 +2,7 @@
 	"name": "AzureSqlTable1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "linkedService1",
+			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -14,13 +14,19 @@
 				"precision": 10
 			},
 			{
-				"name": "fvalues",
+				"name": "fname",
 				"type": "varchar"
+			},
+			{
+				"name": "fnum",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 5
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "table0801"
+			"table": "table1120"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

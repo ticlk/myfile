@@ -1,0 +1,10 @@
+{
+	"name": "alexstoragen3",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/413eb882-b134-4b64-b202-519e1fe3a994/resourceGroups/AlexCong/providers/Microsoft.Storage/storageAccounts/alexstoragen3",
+		"groupId": "dfs",
+		"fqdns": [
+			"alexstoragen3.dfs.core.chinacloudapi.cn"
+		]
+	}
+}

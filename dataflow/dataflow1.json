@@ -6,74 +6,34 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "AzureMySqlTable1",
+						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
-				},
-				{
-					"dataset": {
-						"referenceName": "AzureMySqlTable2",
-						"type": "DatasetReference"
-					},
-					"name": "source2"
 				}
 			],
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Parquet5",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
 				}
 			],
-			"transformations": [
-				{
-					"name": "join1"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
-				"parameters{",
-				"     parameter01 as string ('1')",
-				"}",
 				"source(output(",
-				"          id as integer,",
-				"          fname as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     inferDriftedColumnTypes: true,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     query: (\"select t1.id, t1.fname from table0731 t1 where t1.id in (\" + $parameter01 + \")\"),",
-				"     format: 'query') ~> source1",
-				"source(output(",
-				"          id as integer,",
-				"          fnum as integer",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source2",
-				"source1, source2 join(source1@id == source2@id,",
-				"     joinType:'inner',",
-				"     matchType:'exact',",
-				"     ignoreSpaces: false,",
-				"     partitionBy('hash', 2,",
-				"          source1@id",
-				"     ),",
-				"     broadcast: 'off')~> join1",
-				"join1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     input(",
 				"          id as integer,",
 				"          fname as string,",
-				"          fnum as integer",
+				"          fnum as decimal(7,5)",
 				"     ),",
-				"     format: 'parquet',",
-				"     umask: 0022,",
-				"     preCommands: [],",
-				"     postCommands: [],",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]

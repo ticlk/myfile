@@ -1,0 +1,513 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf1108"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobsource_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobsource'"
+		},
+		"AzureDataLakeStorage1_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'AzureDataLakeStorage1'"
+		},
+		"AzureDatabricksDeltaLake1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake1'"
+		},
+		"AzureFunction1_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'AzureFunction1'"
+		},
+		"AzureMySql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql1'"
+		},
+		"AzureMySql2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql2'"
+		},
+		"AzureMySql3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql3'"
+		},
+		"AzureMySql4_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql4'"
+		},
+		"AzurePostgreSql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
+		},
+		"AzureSqlDatabase1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase2_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'AzureSqlDatabase2'"
+		},
+		"AzureSqlMI1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlMI1'"
+		},
+		"Dataverse1_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'Dataverse1'"
+		},
+		"Salesforce1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Salesforce1'"
+		},
+		"Salesforce1_securityToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'securityToken' of 'Salesforce1'"
+		},
+		"alexstoragen3_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'alexstoragen3'"
+		},
+		"blob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'blob'"
+		},
+		"blobreadlookup_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'blobreadlookup'"
+		},
+		"linkedService1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'linkedService1'"
+		},
+		"storage_copy_test_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'storage_copy_test'"
+		},
+		"synapse02-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'synapse02-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapse02.sql.azuresynapse.azure.cn,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"test0523_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'test0523'"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storagee2.dfs.core.chinacloudapi.cn/"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "b388b808-0ec9-4a09-a414-a7cbbd8b7e9b"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "08715978-21cf-4596-b843-302dee41e8fd"
+		},
+		"AzureFunction1_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://functiontest.chinacloudsites.cn"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv0617.vault.azure.cn/"
+		},
+		"AzureMLService1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "1f2ffc2d-4f6a-4fea-b142-31ae337d6aad"
+		},
+		"AzureMLService1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "rg0403"
+		},
+		"AzureMLService1_properties_typeProperties_mlWorkspaceName": {
+			"type": "string",
+			"defaultValue": "aml0618"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql1111.database.chinacloudapi.cn"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "lihong"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "d365test2.crm.dynamics.cn"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "d365test"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "b37daf1c-8fac-42f5-968e-3f38c005e4d1"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "d3362c93-3cc0-46ba-9dc8-a6f1c2e0df08"
+		},
+		"AzureSqlMI1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "userdb.public.be26f54c986d.database.chinacloudapi.cn,3342"
+		},
+		"AzureSqlMI1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Test01"
+		},
+		"AzureSqlMI1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin123"
+		},
+		"Dataverse1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "b37daf1c-8fac-42f5-968e-3f38c005e4d1"
+		},
+		"SAS_BLOB_SOURCE_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'SAS_BLOB_SOURCE'"
+		},
+		"Salesforce1_properties_typeProperties_environmentUrl": {
+			"type": "string",
+			"defaultValue": "https://zeiss--evapoc.sandbox.liqhtning.sfcrmapps.cn"
+		},
+		"Salesforce1_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "1234"
+		},
+		"alexstoragen3_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://alexstoragen3.dfs.core.chinacloudapi.cn/"
+		},
+		"linkedService1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sqlserver0409.database.chinacloudapi.cn"
+		},
+		"linkedService1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db2"
+		},
+		"linkedService1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin123"
+		},
+		"synapse02-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlseast2jessie.dfs.core.chinacloudapi.cn"
+		},
+		"test0523_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://test0523.dfs.core.chinacloudapi.cn/"
+		},
+		"selfIR_properties_typeProperties_linkedInfo_resourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/413eb882-b134-4b64-b202-519e1fe3a994/resourcegroups/AlexDataFactory/providers/Microsoft.DataFactory/factories/AlexDatafactory/integrationruntimes/integrationRuntime1"
+		},
+		"AzureSqlMI974_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/5bbf0cbb-647d-4bd8-b4e6-26629f109bd7/resourceGroups/apprest/providers/Microsoft.Sql/managedInstances/userdb"
+		},
+		"AzureSqlMI974_properties_groupId": {
+			"type": "string",
+			"defaultValue": "managedInstance"
+		},
+		"AzureSqlMI974_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"userdb.be26f54c986d.database.chinacloudapi.cn"
+			]
+		},
+		"alexstoragen3_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/413eb882-b134-4b64-b202-519e1fe3a994/resourceGroups/AlexCong/providers/Microsoft.Storage/storageAccounts/alexstoragen3"
+		},
+		"alexstoragen3_properties_groupId": {
+			"type": "string",
+			"defaultValue": "dfs"
+		},
+		"alexstoragen3_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"alexstoragen3.dfs.core.chinacloudapi.cn"
+			]
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf1108_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureBlobsource_connectionString": {
+						"value": "[parameters('AzureBlobsource_connectionString')]"
+					},
+					"AzureDataLakeStorage1_servicePrincipalCredential": {
+						"value": "[parameters('AzureDataLakeStorage1_servicePrincipalCredential')]"
+					},
+					"AzureDatabricksDeltaLake1_accessToken": {
+						"value": "[parameters('AzureDatabricksDeltaLake1_accessToken')]"
+					},
+					"AzureFunction1_functionKey": {
+						"value": "[parameters('AzureFunction1_functionKey')]"
+					},
+					"AzureMySql1_connectionString": {
+						"value": "[parameters('AzureMySql1_connectionString')]"
+					},
+					"AzureMySql2_connectionString": {
+						"value": "[parameters('AzureMySql2_connectionString')]"
+					},
+					"AzureMySql3_connectionString": {
+						"value": "[parameters('AzureMySql3_connectionString')]"
+					},
+					"AzureMySql4_connectionString": {
+						"value": "[parameters('AzureMySql4_connectionString')]"
+					},
+					"AzurePostgreSql1_connectionString": {
+						"value": "[parameters('AzurePostgreSql1_connectionString')]"
+					},
+					"AzureSqlDatabase1_password": {
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					},
+					"blob_connectionString": {
+						"value": "[parameters('blob_connectionString')]"
+					},
+					"blobreadlookup_connectionString": {
+						"value": "[parameters('blobreadlookup_connectionString')]"
+					},
+					"linkedService1_password": {
+						"value": "[parameters('linkedService1_password')]"
+					},
+					"storage_copy_test_connectionString": {
+						"value": "[parameters('storage_copy_test_connectionString')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_tenant')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_servicePrincipalId')]"
+					},
+					"AzureFunction1_properties_typeProperties_functionAppUrl": {
+						"value": "[parameters('AzureFunction1_properties_typeProperties_functionAppUrl')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"AzureMLService1_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('AzureMLService1_properties_typeProperties_subscriptionId')]"
+					},
+					"AzureMLService1_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('AzureMLService1_properties_typeProperties_resourceGroupName')]"
+					},
+					"AzureMLService1_properties_typeProperties_mlWorkspaceName": {
+						"value": "[parameters('AzureMLService1_properties_typeProperties_mlWorkspaceName')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
+					},
+					"SAS_BLOB_SOURCE_sasUri": {
+						"value": "[parameters('SAS_BLOB_SOURCE_sasUri')]"
+					},
+					"linkedService1_properties_typeProperties_server": {
+						"value": "[parameters('linkedService1_properties_typeProperties_server')]"
+					},
+					"linkedService1_properties_typeProperties_database": {
+						"value": "[parameters('linkedService1_properties_typeProperties_database')]"
+					},
+					"linkedService1_properties_typeProperties_userName": {
+						"value": "[parameters('linkedService1_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf1108_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"selfIR_properties_typeProperties_linkedInfo_resourceId": {
+						"value": "[parameters('selfIR_properties_typeProperties_linkedInfo_resourceId')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf1108_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adf1108_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"alexstoragen3_accountKey": {
+						"value": "[parameters('alexstoragen3_accountKey')]"
+					},
+					"synapse02-WorkspaceDefaultSqlServer_connectionString": {
+						"value": "[parameters('synapse02-WorkspaceDefaultSqlServer_connectionString')]"
+					},
+					"test0523_accountKey": {
+						"value": "[parameters('test0523_accountKey')]"
+					},
+					"AzureSqlDatabase2_servicePrincipalCredential": {
+						"value": "[parameters('AzureSqlDatabase2_servicePrincipalCredential')]"
+					},
+					"AzureSqlMI1_password": {
+						"value": "[parameters('AzureSqlMI1_password')]"
+					},
+					"alexstoragen3_properties_typeProperties_url": {
+						"value": "[parameters('alexstoragen3_properties_typeProperties_url')]"
+					},
+					"synapse02-WorkspaceDefaultStorage_properties_typeProperties_url": {
+						"value": "[parameters('synapse02-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+					},
+					"test0523_properties_typeProperties_url": {
+						"value": "[parameters('test0523_properties_typeProperties_url')]"
+					},
+					"AzureSqlMI974_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureSqlMI974_properties_privateLinkResourceId')]"
+					},
+					"AzureSqlMI974_properties_groupId": {
+						"value": "[parameters('AzureSqlMI974_properties_groupId')]"
+					},
+					"AzureSqlMI974_properties_fqdns": {
+						"value": "[parameters('AzureSqlMI974_properties_fqdns')]"
+					},
+					"alexstoragen3_properties_privateLinkResourceId": {
+						"value": "[parameters('alexstoragen3_properties_privateLinkResourceId')]"
+					},
+					"alexstoragen3_properties_groupId": {
+						"value": "[parameters('alexstoragen3_properties_groupId')]"
+					},
+					"alexstoragen3_properties_fqdns": {
+						"value": "[parameters('alexstoragen3_properties_fqdns')]"
+					},
+					"AzureSqlDatabase2_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase2_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase2_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase2_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase2_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('AzureSqlDatabase2_properties_typeProperties_servicePrincipalId')]"
+					},
+					"AzureSqlDatabase2_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureSqlDatabase2_properties_typeProperties_tenant')]"
+					},
+					"AzureSqlMI1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlMI1_properties_typeProperties_server')]"
+					},
+					"AzureSqlMI1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlMI1_properties_typeProperties_database')]"
+					},
+					"AzureSqlMI1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlMI1_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf1108_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "adf1108_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Dataverse1_servicePrincipalCredential": {
+						"value": "[parameters('Dataverse1_servicePrincipalCredential')]"
+					},
+					"Salesforce1_password": {
+						"value": "[parameters('Salesforce1_password')]"
+					},
+					"Salesforce1_securityToken": {
+						"value": "[parameters('Salesforce1_securityToken')]"
+					},
+					"Dataverse1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('Dataverse1_properties_typeProperties_servicePrincipalId')]"
+					},
+					"Salesforce1_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('Salesforce1_properties_typeProperties_environmentUrl')]"
+					},
+					"Salesforce1_properties_typeProperties_clientId": {
+						"value": "[parameters('Salesforce1_properties_typeProperties_clientId')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf1108_ArmTemplate_2')]"
+			]
+		}
+	]
+}
